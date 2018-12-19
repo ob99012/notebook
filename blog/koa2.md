@@ -25,6 +25,7 @@
  }
  ```
  3. koa middleware
+ 
   koa的执行逻辑的核心代码是 :
  ```
  app.use(async(ctx,next)=>{
@@ -35,6 +36,7 @@
   
  ```
  原理是koa把很多async函数组合成一条有序链，每个async的函数都是其中一环，它们各自执行自己的职责，而```await next()```则是用来调用下一个async函数。
+ 
  所以要注意顺序。下面这个例子就很完美的诠释了”app.use()的顺序决定了middleware的顺序“。
  ```
   const Koa=require('koa');
@@ -225,6 +227,7 @@ app.use(controller());// 使用middleware:
 所有处理URL的函数按功能组存放在controllers目录，今后我们也只需要不断往这个目录下加东西就可以了，app.js保持不变。
 
 6. 接下来就是view模板。
+
 有很多可以选择，但是由于大佬选的nunjucks,菜的如我就没有选择的余地了。天下的模板都一样，套上自带的神奇语法。nunjucks也不例外，
 特别是它基本上是用javascript重新实现了jinjia2.【由于偶然机会，帮小伙伴处理了jinja2相关项目问题借此知道了还存在这么奇怪的名字的框架
 故也不算是全抄】
